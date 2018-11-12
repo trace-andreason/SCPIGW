@@ -14,6 +14,7 @@ class GMOD{
     def message
     def exchange
     def camelContext
+
     GMOD(message) {
         this.message = message
         this.exchange = message.exchange
@@ -33,10 +34,35 @@ class GMOD{
     }
     
     def getExternal(name) {
+    // Gets an externalized paramter 
         try {
             return evaluateSimple("{{" + name + "}}")
         } catch (IllegalArgumentException) {
             return null
         }
+    }
+
+    def getPersistentVariable() {
+        //TODO: Implement
+    }
+
+    def setPersistentVariable() {
+        //TODO: Implement
+    }
+
+    def getExchangeVariable() {
+        //TODO: Implement
+    }
+    
+    def setExchangeVariable() {
+        //TODO: Implement
+    }
+
+    def getHeaderVariable() {
+
+    }
+
+    def setHeaderVariable() {
+
     }
 }
