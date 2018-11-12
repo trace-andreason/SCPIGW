@@ -4,7 +4,11 @@
 ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││
 │└───┘└───┘└───┘└───┘└───┘└───┘└───┘└───┘└───┘└───┘└───┘└───┘│
 └────────────────────────────────────────────────────────────┘
-*/
+ */
+
+import org.apache.camel.Exchange;
+import org.apache.camel.CamelContext;
+import org.apache.camel.builder.SimpleBuilder;
 
 class GMOD{
     def message
@@ -21,6 +25,18 @@ class GMOD{
             return message.getBody()
         }
         return message.getBody(java.lang.String)
-        
+    }
+    
+    def evaluateSimple(simpleExpression) {
+        SimpleBuilder.simple(simpleExpression).evaluate(this.exchange,
+                                                        String)
+    }
+    
+    def getExternal(name) {
+        try {
+            return evaluateSimple("{{" + name + "}}")
+        } catch (IllegalArgumentException) {
+            return null
+        }
     }
 }
