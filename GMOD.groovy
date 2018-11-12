@@ -1,4 +1,4 @@
-/* 
+/*
 ┌This Lightning was jarred in Portland, OR by Trace Andreason┐
 │[===][===][===][===][===][===][===][===][===][===][===][===]│
 ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││ ϟ ││
@@ -43,26 +43,32 @@ class GMOD{
     }
 
     def getPersistentVariable() {
+    // Gets the value of a Persisten Variable
         //TODO: Implement
     }
 
     def setPersistentVariable() {
+    // Sets the value of a Persisten Variable
         //TODO: Implement
     }
 
     def getExchangeVariable() {
+    // Gets the value of an Exchange Variable
         //TODO: Implement
     }
     
     def setExchangeVariable() {
+    // Sets the value of an Exchange Variable
         //TODO: Implement
     }
 
     def getHeaderVariable() {
-
+    // Gets the value of a Header Variable
+        //TODO: Implement
     }
 
     def setHeaderVariable() {
-
+     // Sets the value of a Header Variable
+        //TODO: Implement
     }
 }
