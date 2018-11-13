@@ -36,20 +36,24 @@ class GMOD{
     def getExternal(name) {
     // Gets an externalized paramter 
         try {
-            return evaluateSimple("{{" + name + "}}")
+            return evaluateSimple("{{" + name + "}}");
         } catch (IllegalArgumentException) {
-            return null
+            return null;
         }
     }
 
-    def getPersistentVariable() {
-    // Gets the value of a Persisten Variable
-        //TODO: Implement
+    def getPersistentVariable(name) {
+        try {
+            this.camelContext.getProperty(name);
+        } catch (MissingPropertyException) {
+            return null;
+        }
     }
 
-    def setPersistentVariable() {
-    // Sets the value of a Persisten Variable
-        //TODO: Implement
+    def setPersistentVariable(key, value) {
+        def tmp = this.camelContext.getProperties();
+        tmp.put(key,value);
+        this.camelContext.setProperties(tmp);
     }
 
     def getExchangeVariable() {
@@ -71,4 +75,8 @@ class GMOD{
      // Sets the value of a Header Variable
         //TODO: Implement
     }
+    def dumpState() {
+        //TODO: Implement
+    }
 }
+
