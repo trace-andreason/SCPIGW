@@ -14,18 +14,25 @@ class GMOD{
     def message
     def exchange
     def camelContext
+    def messageBody
 
     GMOD(message) {
         this.message = message
         this.exchange = message.exchange
         this.camelContext = this.exchange.getContext()
+        if (this.message.getBody().getClass() == java.lang.String) {
+            this.messageBody = message.getBody()
+        } else {
+            this.messageBody = message.getBody(java.lang.String)
+        }
     }
 
     def getPayloadBody() {
-        if (this.message.getBody().getClass() == java.lang.String) {
-            return message.getBody()
-        }
-        return message.getBody(java.lang.String)
+        return this.messageBody
+    }
+    
+    def saveBody() {
+        this.message.setBody(this.messageBody);
     }
     
     def evaluateSimple(simpleExpression) {
@@ -44,7 +51,7 @@ class GMOD{
 
     def getPersistentVariable(name) {
         try {
-            this.camelContext.getProperty(name);
+            return this.camelContext.getProperty(name);
         } catch (MissingPropertyException) {
             return null;
         }
@@ -56,27 +63,48 @@ class GMOD{
         this.camelContext.setProperties(tmp);
     }
 
-    def getExchangeVariable() {
-    // Gets the value of an Exchange Variable
-        //TODO: Implement
+    def getExchangeVariable(name) {
+        try {
+            return this.exchange.getProperty(name);
+        } catch (MissingPropertyException) {
+            return null;
+        }
     }
     
-    def setExchangeVariable() {
-    // Sets the value of an Exchange Variable
-        //TODO: Implement
+    def setExchangeVariable(key, value) {
+        this.exchange.setProperty(key, value);
     }
 
-    def getHeaderVariable() {
-    // Gets the value of a Header Variable
-        //TODO: Implement
+    def getHeaderVariable(name) {
+        try {
+            return this.message.getHeader(name, java.lang.String)
+        } catch (MissingPropertyException) {
+            return null;
+        }
     }
 
-    def setHeaderVariable() {
-     // Sets the value of a Header Variable
-        //TODO: Implement
+    def setHeaderVariable(key, value) {
+        this.message.setHeader(key, value)
     }
-    def dumpState() {
-        //TODO: Implement
+    
+    def dumpState(body) {
+        this.message.setBody(body);
+        StringBuilder sb = new StringBuilder();
+        sb << "----- CamelContext -----" + '\r\n'
+        sb << "-- Persistent Variables --" + '\r\n'
+        sb << this.camelContext.getProperties().toString() + '\r\n'
+        
+        sb << "----- Exchange -----" + '\r\n'
+        sb << "-- Exchange Variables --" + '\r\n'
+        sb << this.exchange.getProperties().toString() + '\r\n'
+        
+        sb << "----- MESSAGE CLASS -----" + '\r\n'
+        sb << "-- message properties --" + '\r\n'
+	    sb << this.message.getProperties().toString() + '\r\n'
+        sb << "-- message headers --" + '\r\n'
+	    sb << this.message.getHeaders().toString() + '\r\n'
+	    sb << "-- message body --" + '\r\n'
+	    sb << this.messageBody + '\r\n'
+	    return sb.toString()
     }
 }
-
