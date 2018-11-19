@@ -36,12 +36,11 @@ class GMOD{
     }
     
     def evaluateSimple(simpleExpression) {
-        SimpleBuilder.simple(simpleExpression).evaluate(this.exchange,
-                                                        String)
+        SimpleBuilder.simple(simpleExpression).evaluate(this.exchange, String)
     }
     
     def getExternal(name) {
-    // Gets an externalized paramter 
+    // Gets an externalized paramter
         try {
             return evaluateSimple("{{" + name + "}}");
         } catch (IllegalArgumentException) {
@@ -75,7 +74,7 @@ class GMOD{
         this.exchange.setProperty(key, value);
     }
 
-    def getHeaderVariable(name) {
+    def getMessageHeader(name) {
         try {
             return this.message.getHeader(name, java.lang.String)
         } catch (MissingPropertyException) {
@@ -83,8 +82,20 @@ class GMOD{
         }
     }
 
-    def setHeaderVariable(key, value) {
+    def setMessageHeader(key, value) {
         this.message.setHeader(key, value)
+    }
+
+    def getMessageProperty(name) {
+        try {
+            return this.message.getProperty(name)
+        } catch (MissingPropertyException) {
+            return null;
+        }
+    }
+
+    def setMessageProperty(key, value) {
+        this.message.setProperty(key, value);
     }
     
     def dumpState(body) {
