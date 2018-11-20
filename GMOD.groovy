@@ -16,7 +16,7 @@ class GMOD{
     def message
     def exchange
     def camelContext
-    def messageBody
+    //def messageHeaders,
 
     GMOD(message) {
         this.message = message

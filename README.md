@@ -1,2 +1,3 @@
-# GMOD
-A Groovy Model for SAP Cloud Platform Integration
+# SCPIGW
+## SAP Cloud Platform Integration Groovy Wrapper
+### ^( ˊ(oo)ˋ )^
