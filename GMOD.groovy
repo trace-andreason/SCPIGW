@@ -1,4 +1,5 @@
 package src.main.resources.script
+
 /*
 ┌This Lightning was jarred in Portland, OR by Trace Andreason┐
 │[===][===][===][===][===][===][===][===][===][===][===][===]│
