@@ -5,7 +5,6 @@
  * For more details take a look at the Groovy Quickstart chapter in the Gradle
  * user guide available at https://docs.gradle.org/4.10.2/userguide/tutorial_groovy_projects.html
  */
-
 plugins {
     // Apply the groovy plugin to add support for Groovy
     id 'groovy'
@@ -14,7 +13,27 @@ plugins {
 dependencies {
     // Use the latest Groovy version for building this library
     compile 'org.codehaus.groovy:groovy-all:2.4.15'
-
+    
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
+    compile 'javax.activation:activation:1.1.1'
+    
+    // JARS from SAP Cloud Platform
+    compile files('libs/com.sap.gateway.ip.core.customdev.util.Message.jar')
+    compile files('libs/com.sap.gateway.ip.core.customdev.processor.MessageImpl.jar')
+    compile files('libs/com.sap.it.api.msg.ExchangePropertyProvider.jar')
+    compile files('libs/org.apache.camel.Attachment.jar')
+    compile files('libs/com.sap.it.script.logging.ILogger.jar')
+    compile files('libs/com.sap.it.commons.layering.Subsystem.jar')
+    compile files('libs/com.sap.it.commons.logging.slf4j.LoggerFactory.jar')
+    compile files('libs/org.slf4j.LoggerFactory.jar')
+    compile files('libs/org.slf4j.impl.StaticLoggerBinder.jar')
+    compile files('libs/ch.qos.logback.core.joran.spi.JoranException.jar')
+    compile files('libs/ch.qos.logback.classic.LoggerContext.jar')
+    compile files('libs/org.apache.camel.impl.DefaultCamelContext.jar')
+    compile files('libs/org.apache.camel.CamelContext.jar')
+    compile files('libs/org.apache.camel.impl.DefaultExchange.jar')
+    compile files('libs/org.apache.camel.Exchange.jar')
+    
     // Use the awesome Spock testing and specification framework
     testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
 }
