@@ -6,7 +6,7 @@ SCPIGW is a groovy class whose aim is to simplify and clarify the interface betw
 The other aim of SCPIGW is to add features to the SCPI work flow that increase developer productivity. The biggest feature of SCPIGW is enabling the local testing of groovy scripts that can be moved to the SCPI platform with little to no modification. The current state of script Testing on SCPI is terrible. As an integration grows in size, the deploy times increase which greatly impact a developers ability to write groovy scripts quickly and efficiently. SCPIGW also provides a nice logging feature that can be used during development, and enabled/disabled using externalized variables.
 
 ### Motivation
-When working with groovy scripts, a common design pattern is the following:
+When working with groovy scripts, a common design pattern is the following
 
     1. Content Modifier Step: Typically used to pull in externalized variables or persisten variables that the groovy script needs to access.
     2. Script Step: The actual groovy script runs, using variables set in the content modifier step. The groovy script usually sets message property variables before it exits to be used in a write variable step.
